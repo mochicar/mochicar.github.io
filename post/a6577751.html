@@ -1,0 +1,390 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ts快速上手 | Mochicar の 博客</title><meta name="author" content="Mochicar"><meta name="copyright" content="Mochicar"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="TypeScript入门内容 参考链接 TypeScript（零） —— 简介、环境搭建、第一个实例 搭建开发环境  文章目录 TypeScript入门 文章目录 认识 TypeScript TypeScript 工作流 TypeScript 的类型 Number 数字类型 String 字符串类型 Boolean 布尔类型 Array 数组类型 Tuple 元组类型 Union 联合类型 Lit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ts快速上手">
+<meta property="og:url" content="http://mochica.top/post/a6577751">
+<meta property="og:site_name" content="Mochicar の 博客">
+<meta property="og:description" content="TypeScript入门内容 参考链接 TypeScript（零） —— 简介、环境搭建、第一个实例 搭建开发环境  文章目录 TypeScript入门 文章目录 认识 TypeScript TypeScript 工作流 TypeScript 的类型 Number 数字类型 String 字符串类型 Boolean 布尔类型 Array 数组类型 Tuple 元组类型 Union 联合类型 Lit">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://mochica.top/img/boy.png">
+<meta property="article:published_time" content="2023-08-01T06:05:02.000Z">
+<meta property="article:modified_time" content="2023-08-01T06:05:10.741Z">
+<meta property="article:author" content="Mochicar">
+<meta property="article:tag" content="blog 博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://mochica.top/img/boy.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://mochica.top/post/a6577751"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.19/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdnjs.cloudflare.com/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.js',
+      css: 'https://cdnjs.cloudflare.com/ajax/libs/flickr-justified-gallery/2.1.2/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ts快速上手',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-08-01 14:05:10'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://npm.elemecdn.com/ethan4116-blog/lib/css/plane_v2.css"><link rel="stylesheet" href="/css/cat.css"><link rel="stylesheet" href="/css/rightMenu.css"><link rel="stylesheet" href="/css/custom.css"><div id="myscoll"></div><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/boy.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-amazon"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Mochicar の 博客"><img class="site-icon" src="/img/boy.png"/><span class="site-name">Mochicar の 博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-amazon"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ts快速上手</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-08-01T06:05:02.000Z" title="发表于 2023-08-01 14:05:02">2023-08-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-08-01T06:05:10.741Z" title="更新于 2023-08-01 14:05:10">2023-08-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ts快速上手"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="TypeScript入门"><a href="#TypeScript入门" class="headerlink" title="TypeScript入门"></a>TypeScript入门</h1><p>内容</p>
+<p>参考链接</p>
+<p>TypeScript（零） —— 简介、环境搭建、第一个实例</p>
+<p><a target="_blank" rel="noopener" href="https://zahuopu.blog.csdn.net/article/details/126000138">搭建开发环境</a></p>
+<hr>
+<h3 id="文章目录"><a href="#文章目录" class="headerlink" title="文章目录"></a>文章目录</h3><ul>
+<li><a href="#typescript%E5%85%A5%E9%97%A8">TypeScript入门</a><ul>
+<li><a href="#%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95">文章目录</a></li>
+<li><a href="#%E8%AE%A4%E8%AF%86-typescript">认识 TypeScript</a></li>
+<li><a href="#typescript-%E5%B7%A5%E4%BD%9C%E6%B5%81">TypeScript 工作流</a></li>
+<li><a href="#typescript-%E7%9A%84%E7%B1%BB%E5%9E%8B">TypeScript 的类型</a><ul>
+<li><a href="#number-%E6%95%B0%E5%AD%97%E7%B1%BB%E5%9E%8B">Number 数字类型</a></li>
+<li><a href="#string-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B">String 字符串类型</a></li>
+<li><a href="#boolean-%E5%B8%83%E5%B0%94%E7%B1%BB%E5%9E%8B">Boolean 布尔类型</a></li>
+<li><a href="#array-%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B">Array 数组类型</a></li>
+<li><a href="#tuple-%E5%85%83%E7%BB%84%E7%B1%BB%E5%9E%8B">Tuple 元组类型</a></li>
+<li><a href="#union-%E8%81%94%E5%90%88%E7%B1%BB%E5%9E%8B">Union 联合类型</a></li>
+<li><a href="#literal-%E5%AD%97%E9%9D%A2%E9%87%8F%E7%B1%BB%E5%9E%8B">Literal 字面量类型</a></li>
+<li><a href="#enum-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B">Enum 枚举类型</a></li>
+<li><a href="#any-%E4%BB%BB%E6%84%8F%E7%B1%BB%E5%9E%8B">Any 任意类型</a></li>
+<li><a href="#unknown-%E6%9C%AA%E7%9F%A5%E7%B1%BB%E5%9E%8B">unknown 未知类型</a></li>
+<li><a href="#voidundefinednever-%E7%B1%BB%E5%9E%8B">void、undefined、never 类型</a></li>
+<li><a href="#type-assertions-%E7%B1%BB%E5%9E%8B%E9%80%82%E9%85%8D">Type Assertions 类型适配</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9C%AC%E7%AB%A0%E5%B0%8F%E7%BB%93">本章小结</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="认识-TypeScript"><a href="#认识-TypeScript" class="headerlink" title="认识 TypeScript"></a>认识 TypeScript</h2><p>TypeScript 简介</p>
+<blockquote>
+<p>TypeScript 是微软开发的一个开源的编程语言，通过在 JavaScript 的基础上添加静态类型定义构建而成。</p>
+</blockquote>
+<p>TypeScript 的作用</p>
+<p>我们都知道，<strong>JavaScript 是弱类型的语言</strong>，对于一些类型的限制并不是很明确。比如说我们编码一个在两个输入框中输入数字求和的加法小程序，这时候直接输入到文本框的数字会被自动转换为字符串形式，就会得到 1 + 1 &#x3D; 11 的奇怪结果。那么这个时候 TypeScript 就可以大显身手，实现 1 + 1 &#x3D; 2。</p>
+<blockquote>
+<p>a. 规范我们的代码<br>b. 代码编译阶段就能及时发现问题<br>c. 在原生JS基础上加上了一层类型定义</p>
+</blockquote>
+<h2 id="TypeScript-工作流"><a href="#TypeScript-工作流" class="headerlink" title="TypeScript 工作流"></a>TypeScript 工作流</h2><p>TSC （把 ts 文件转换为 js 文件）的作用相当于 Babel（把高级语法和代码转换为浏览器能识别的低级语法和代码）。</p>
+<p>编译和运行参考 <a target="_blank" rel="noopener" href="https://zahuopu.blog.csdn.net/article/details/126000138">TypeScript（零） —— 简介、环境搭建、第一个实例</a></p>
+<p><img src="https://img-blog.csdnimg.cn/5b7d7d1921454fa2aeaf81206a9090d5.png" alt="在这里插入图片描述"></p>
+<p>上图表示：ts 文件通过 tsc 命令把 ts 文件转成了 js 文件。</p>
+<h2 id="TypeScript-的类型"><a href="#TypeScript-的类型" class="headerlink" title="TypeScript 的类型"></a>TypeScript 的类型</h2><p>相比于 JavaScript 的原始类型（基本数据类型）和对象类型（引用数据类型），TypeScript 也有自己的数据类型，内容如下：</p>
+<blockquote>
+<p>基本类型：boolean、string、number、array、tuple、enum、null、undefined、object、void、never、any</p>
+</blockquote>
+<blockquote>
+<p>高级类型：union 组合类型、Nullable 可空类型、Literal 预定义类型</p>
+</blockquote>
+<p>接下来，我们对不同类型进行逐一详细的探索…</p>
+<h3 id="Number-数字类型"><a href="#Number-数字类型" class="headerlink" title="Number 数字类型"></a>Number 数字类型</h3><p>对数字的定义只有一个笼统的 Number 表示，既能表示 <strong>整数</strong>、也能表示 <strong>浮点数</strong>，甚至也可以表示 <strong>正负数</strong>。例如：1，3.3，-5 等等。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num1 = <span class="number">2</span></span><br><span class="line"><span class="keyword">let</span> num2 = <span class="number">6</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">add</span>(<span class="params">n1: number, n2: number</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> n1 + n2</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">add</span>(num1, num2))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>之后终端执行 <code>tsc main.ts</code> 和 <code>node main.js</code>，可以得出结果 <code>8</code>。</p>
+<h3 id="String-字符串类型"><a href="#String-字符串类型" class="headerlink" title="String 字符串类型"></a>String 字符串类型</h3><p>与 JavaScript 书写方式及使用方法均一致。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;前端杂货铺&#x27;</span></span><br><span class="line"><span class="string">&quot;前端杂货铺&quot;</span></span><br><span class="line"><span class="string">`前端杂货铺`</span></span><br><span class="line"></span><br><span class="line"><span class="string">``</span><span class="string">``</span><span class="string">``</span>javascript</span><br><span class="line"><span class="keyword">let</span> <span class="attr">myName</span>: string = <span class="string">&quot;前端杂货铺&quot;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;myName&#x27;</span>, myName)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>之后终端执行 <code>tsc main.ts</code> 和 <code>node main.js</code>，可以得出以下结果。</p>
+<p><img src="https://img-blog.csdnimg.cn/4e8e97379f16492ca3b37672937d8130.png" alt="在这里插入图片描述"></p>
+<h3 id="Boolean-布尔类型"><a href="#Boolean-布尔类型" class="headerlink" title="Boolean 布尔类型"></a>Boolean 布尔类型</h3><p>表示真、假，常用于处理判断逻辑。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">isTrue</span>: boolean = <span class="literal">true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;isTure&#x27;</span>, isTrue)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>之后终端执行 <code>tsc main.ts</code> 和 <code>node main.js</code>，可以得出以下结果。</p>
+<p><img src="https://img-blog.csdnimg.cn/9b4c81d6c5cb4658b60a8da5aa07786b.png" alt="在这里插入图片描述"></p>
+<h3 id="Array-数组类型"><a href="#Array-数组类型" class="headerlink" title="Array 数组类型"></a>Array 数组类型</h3><p>数组中可以存放任意类型的数据，JS中数组的宽容度非常大，TS也继承了这一点。</p>
+<p>以下三种写法（list1、list2、list3）表示的完全一致，鼠标移动至 list 上编译器均提示 <code>number[]</code>，表示数字类型。</p>
+<p><img src="https://img-blog.csdnimg.cn/18dd86617db740168e576f87dfc863f4.png" alt="在这里插入图片描述"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">list1</span>: number[] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="keyword">let</span> <span class="attr">list2</span>: <span class="title class_">Array</span>&lt;number&gt; = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="keyword">let</span> list3 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>下面的 list 4 为 (string | number)[]，表示字符串和数字类型。</p>
+<p><img src="https://img-blog.csdnimg.cn/ace86d03b03b438bae260d34bf7b6344.png" alt="在这里插入图片描述"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> list4 = [<span class="number">1</span>, <span class="string">&#x27;前端杂货铺&#x27;</span>]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>下面的 list 5 为 any[]，表示任意类型。</p>
+<p><img src="https://img-blog.csdnimg.cn/a0d3a352b9894d1789d55fdf1bb36ac3.png" alt="在这里插入图片描述"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">list5</span>: any[] = [<span class="number">1</span>, <span class="string">&#x27;前端杂货铺&#x27;</span>, <span class="literal">true</span>]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="Tuple-元组类型"><a href="#Tuple-元组类型" class="headerlink" title="Tuple 元组类型"></a>Tuple 元组类型</h3><p>固定长度，固定类型的 Array，声明元组的时候一定要事先指定类型。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">person</span>: [number, string] = [<span class="number">1</span>, <span class="string">&quot;前端杂货铺&quot;</span>]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>此时，元组的长度和类型都被固定住了，当我们尝试修改元素的长度和类型都会报错。</p>
+<p><img src="https://img-blog.csdnimg.cn/329278ba86ec45428d1b5d39f8123a5c.png" alt="在这里插入图片描述"></p>
+<p><strong>注：元组类型有一个 Bug，可以调用 push() 方法改变元组的长度。</strong></p>
+<h3 id="Union-联合类型"><a href="#Union-联合类型" class="headerlink" title="Union 联合类型"></a>Union 联合类型</h3><p>联合类型表示一个变量同时支持两个或者多个不同的类型。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> union : string | number</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/d46e7e59a60549f68f3a33b22ca98fbf.png" alt="在这里插入图片描述"></p>
+<h3 id="Literal-字面量类型"><a href="#Literal-字面量类型" class="headerlink" title="Literal 字面量类型"></a>Literal 字面量类型</h3><p>可以混合使用不同的类型。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> literal : <span class="number">1</span> | <span class="string">&quot;前端杂货铺&quot;</span> | <span class="literal">true</span> | [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>示例：merge 求和（分为数字和字符串两种方式）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">merge</span>(<span class="params">n1: number | string, n2: number | string, resultType: <span class="string">&quot;as-number&quot;</span> | <span class="string">&quot;as-string&quot;</span></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (resultType === <span class="string">&#x27;as-string&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> n1.<span class="title function_">toString</span>() + n2.<span class="title function_">toString</span>()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> n1 === <span class="string">&quot;string&quot;</span> || <span class="keyword">typeof</span> n2 === <span class="string">&quot;string&quot;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> n1.<span class="title function_">toString</span>() + n2.<span class="title function_">toString</span>()</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> n1 + n2</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> mergeNumber1 = <span class="title function_">merge</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="string">&quot;as-number&quot;</span>)</span><br><span class="line"><span class="keyword">let</span> mergeNumber2 = <span class="title function_">merge</span>(<span class="number">1</span>, <span class="number">1</span>, <span class="string">&quot;as-string&quot;</span>)</span><br><span class="line"><span class="keyword">let</span> mergeString = <span class="title function_">merge</span>(<span class="string">&quot;前端&quot;</span>, <span class="string">&quot;杂货铺&quot;</span>, <span class="string">&quot;as-string&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(mergeNumber1)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(mergeNumber2)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(mergeString)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>之后终端执行 <code>tsc main.ts</code> 和 <code>node main.js</code>，可以得出以下结果。</p>
+<p><img src="https://img-blog.csdnimg.cn/adfbfc44f3d2458190412282763ed30b.png" alt="在这里插入图片描述"></p>
+<h3 id="Enum-枚举类型"><a href="#Enum-枚举类型" class="headerlink" title="Enum 枚举类型"></a>Enum 枚举类型</h3><p>枚举允许我们定义一组命名的常量。<strong>默认情况下</strong>，我们获取到对象的某个属性打印出来的是该属性的<strong>索引</strong>，神奇的是，我们可以 <strong>给对象里面的属性赋值</strong>，这时候再获取到对象的某个属性时打印出来的就是 <strong>我们给属性赋的值</strong> 了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">enum <span class="title class_">Color</span> &#123;</span><br><span class="line">    red,</span><br><span class="line">    yellow = <span class="string">&#x27;黄色&#x27;</span>,</span><br><span class="line">    blue = <span class="string">&#x27;blue&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> color1 = <span class="title class_">Color</span>.<span class="property">red</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(color1)</span><br><span class="line"><span class="keyword">let</span> color2 = <span class="title class_">Color</span>.<span class="property">blue</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(color2)</span><br><span class="line"><span class="keyword">let</span> color3 = <span class="title class_">Color</span>.<span class="property">yellow</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(color3)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>之后终端执行 <code>tsc main.ts</code> 和 <code>node main.js</code>，可以得出以下结果。</p>
+<p><img src="https://img-blog.csdnimg.cn/0ebba57921864bd1a30ce4a6a674c367.png" alt="在这里插入图片描述"></p>
+<h3 id="Any-任意类型"><a href="#Any-任意类型" class="headerlink" title="Any 任意类型"></a>Any 任意类型</h3><p>Any 这个类型可以让我们随意定义类型，当我们“懒得”定义复杂类型结构的时候，可以合理的使用它。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">randomValue</span>: any = <span class="number">123</span></span><br><span class="line">randomValue = <span class="literal">true</span></span><br><span class="line">randomValue = <span class="string">&quot;前端杂货铺&quot;</span></span><br><span class="line">randomValue = &#123;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="unknown-未知类型"><a href="#unknown-未知类型" class="headerlink" title="unknown 未知类型"></a>unknown 未知类型</h3><p>unknown 不保证类型，但 <strong>可以保证类型安全</strong>，当我们出现错误编码时（下面的数字 123 不能调用 toUpperCase() 方法），使用 unknow 编译器会有报错提示。</p>
+<p><img src="https://img-blog.csdnimg.cn/791317f9ddcd48648bdd1eb99c7f65fa.png" alt="在这里插入图片描述"></p>
+<p>我们可以做出以下适配，让编译器不报错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">randomValue</span>: unknown = <span class="number">123</span></span><br><span class="line">randomValue = <span class="literal">true</span></span><br><span class="line">randomValue = <span class="string">&quot;前端杂货铺&quot;</span></span><br><span class="line">randomValue = &#123;&#125;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> randomValue === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">    <span class="title function_">randomValue</span>()</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> randomValue === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">    randomValue.<span class="title function_">toUpperCase</span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="void、undefined、never-类型"><a href="#void、undefined、never-类型" class="headerlink" title="void、undefined、never 类型"></a>void、undefined、never 类型</h3><p>不存在时用 void，undefined 表示必须存在但可以不赋值，永远不会执行完时用 never。</p>
+<p>此时使用了 void（默认就是 void，可加可不加），不添加返回值也一切正常。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">printResult</span>(<span class="params"></span>) : <span class="keyword">void</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;前端杂货铺&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hello&quot;</span>, <span class="title function_">printResult</span>())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>之后终端执行 <code>tsc main.ts</code> 和 <code>node main.js</code>，可以得出以下结果。</p>
+<p><img src="https://img-blog.csdnimg.cn/bc75f30833de483c81778c84a7eb3669.png" alt="在这里插入图片描述"></p>
+<p>此时使用了 undefined，函数体里面必须有返回值，我们可以在函数体内添加 return，不然会报错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">printResult</span>(<span class="params"></span>) : <span class="literal">undefined</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;前端杂货铺&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hello&quot;</span>, <span class="title function_">printResult</span>())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>之后终端执行 <code>tsc main.ts</code> 和 <code>node main.js</code>，可以得出以下结果。</p>
+<p><img src="https://img-blog.csdnimg.cn/bc75f30833de483c81778c84a7eb3669.png" alt="在这里插入图片描述"></p>
+<p>此时使用了 never，一般用在抛出异常或者 promise 中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">throwError</span>(<span class="params">message: string, errorCode: number</span>): never &#123;</span><br><span class="line">    <span class="keyword">throw</span> &#123;</span><br><span class="line">        message,</span><br><span class="line">        errorCode</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">throwError</span>(<span class="string">&quot;not found&quot;</span>, <span class="number">404</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">``</span><span class="string">``</span><span class="string">``</span>javascript</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">whileLoop</span>(<span class="params"></span>): never &#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;前端杂货铺&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="Type-Assertions-类型适配"><a href="#Type-Assertions-类型适配" class="headerlink" title="Type Assertions 类型适配"></a>Type Assertions 类型适配</h3><p>第一个 endsWith() 出现的地方编译器是不会自动提示补全的，因为此时的类型还是 any，而不是 string，我们可以使用 endsWith() 在下面代码中第二次和第三次出现的地方的方式进行类型适配，便可以实现自动补全（在我们刚开始不明确类型，而后面明确类型后就可以使用这种类型适配的方式）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> message : any</span><br><span class="line">message = <span class="string">&quot;前端杂货铺&quot;</span></span><br><span class="line">message.<span class="title function_">endsWith</span>(<span class="string">&quot;铺&quot;</span>)</span><br><span class="line"></span><br><span class="line">(&lt;string&gt;message).<span class="title function_">endsWith</span>(<span class="string">&quot;铺&quot;</span>)</span><br><span class="line">(message <span class="keyword">as</span> string).<span class="title function_">endsWith</span>(<span class="string">&quot;铺&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h2><p>存在即合理，TypeScript 的出现自有它的用途。TypeScript 作为 JavaScript 的超集，对 JavaScript 进行了一些列约束，使得弱类型的 JavaScript 变成强类型，这就会使得代码更清晰、可读性更高、提高了代码的可读性和可维护性，更适合开发大型应用。</p>
+<p>结合 Vue3 对 TypeScript 更好的包容性，使用 Vue3 + TS 构建大、中、小型应用便成了一种大趋势…</p>
+<hr>
+<blockquote>
+<p>参考资料：</p>
+<ol>
+<li>TypeScript 百度百科</li>
+<li>TypeScript 入门讲解 【作者：阿莱克斯刘】</li>
+</ol>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://mochica.top">Mochicar</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://mochica.top/post/a6577751">http://mochica.top/post/a6577751</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://mochica.top" target="_blank">Mochicar の 博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/boy.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/butterfly-extsrc/1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdnjs.cloudflare.com/ajax/libs/butterfly-extsrc/1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/post/692db637" title="fetch和ajax的区别"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">fetch和ajax的区别</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/boy.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Mochicar</div><div class="author-info__description">everything is possible</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:m13027235587@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TypeScript%E5%85%A5%E9%97%A8"><span class="toc-number">1.</span> <span class="toc-text">TypeScript入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95"><span class="toc-number">1.0.1.</span> <span class="toc-text">文章目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A4%E8%AF%86-TypeScript"><span class="toc-number">1.1.</span> <span class="toc-text">认识 TypeScript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TypeScript-%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="toc-number">1.2.</span> <span class="toc-text">TypeScript 工作流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TypeScript-%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">TypeScript 的类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Number-%E6%95%B0%E5%AD%97%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.1.</span> <span class="toc-text">Number 数字类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.2.</span> <span class="toc-text">String 字符串类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Boolean-%E5%B8%83%E5%B0%94%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.3.</span> <span class="toc-text">Boolean 布尔类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Array-%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.4.</span> <span class="toc-text">Array 数组类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tuple-%E5%85%83%E7%BB%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.5.</span> <span class="toc-text">Tuple 元组类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Union-%E8%81%94%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.6.</span> <span class="toc-text">Union 联合类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Literal-%E5%AD%97%E9%9D%A2%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.7.</span> <span class="toc-text">Literal 字面量类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Enum-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.8.</span> <span class="toc-text">Enum 枚举类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Any-%E4%BB%BB%E6%84%8F%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.9.</span> <span class="toc-text">Any 任意类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unknown-%E6%9C%AA%E7%9F%A5%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.10.</span> <span class="toc-text">unknown 未知类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#void%E3%80%81undefined%E3%80%81never-%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.11.</span> <span class="toc-text">void、undefined、never 类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Type-Assertions-%E7%B1%BB%E5%9E%8B%E9%80%82%E9%85%8D"><span class="toc-number">1.3.12.</span> <span class="toc-text">Type Assertions 类型适配</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E7%AB%A0%E5%B0%8F%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">本章小结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/a6577751" title="ts快速上手">ts快速上手</a><time datetime="2023-08-01T06:05:02.000Z" title="发表于 2023-08-01 14:05:02">2023-08-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/692db637" title="fetch和ajax的区别">fetch和ajax的区别</a><time datetime="2023-08-01T06:03:26.000Z" title="发表于 2023-08-01 14:03:26">2023-08-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/de8f3828" title="console的常见方法">console的常见方法</a><time datetime="2023-08-01T06:02:54.000Z" title="发表于 2023-08-01 14:02:54">2023-08-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/d3aa27e1" title="小程序canvas2d实现电子签名">小程序canvas2d实现电子签名</a><time datetime="2023-08-01T06:02:15.000Z" title="发表于 2023-08-01 14:02:15">2023-08-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/e7e9df67" title="使用vite构建项目">使用vite构建项目</a><time datetime="2023-08-01T06:01:32.000Z" title="发表于 2023-08-01 14:01:32">2023-08-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">公益广告</p><div class="bg-ad"><div></div>国家反诈中心是国务院打击治理电信网络新型违法犯罪工作部际联席会议合成作战平台，集资源整合、情报研判、侦查指挥为一体，在打击、防范、治理电信网络诈骗等新型违法犯罪中发挥着重要作用。<div class="btn-xz-box"><a class="btn-xz" target="_blank" rel="noopener" href="https://www.hack-gov.com.cn/posts/21480.html">下载（国家反诈中心）APP</a></div></div></div><div class="t-t-r"><p class="ft-t t-l-t">修仙导航</p><ul class="ft-links"><li><a target="_blank" rel="noopener" href="https://fe32.top/articles/hexo1600/">建站指南</a><a target="_blank" rel="noopener" href="https://fe32.top/nav.html">网址导航</a></li><li><a target="_blank" rel="noopener" href="https://fe32.top/sponsorWall/">来杯咖啡</a><a target="_blank" rel="noopener" href="https://fe32.top/comments/">留点什么</a></li><li><a target="_blank" rel="noopener" href="https://fe32.top/about/">关于博主</a><a target="_blank" rel="noopener" href="https://fe32.top/archives/">文章归档</a></li><li><a target="_blank" rel="noopener" href="https://fe32.top/categories/">文章分类</a><a target="_blank" rel="noopener" href="https://fe32.top/tags/">文章标签</a></li><li><a target="_blank" rel="noopener" href="https://fe32.top/gallery/">我的相册</a><a target="_blank" rel="noopener" href="https://fe32.top/bangumis/">我的追番</a></li><li><a target="_blank" rel="noopener" href="https://fe32.top/specialEffects/">一些特效</a><a target="_blank" rel="noopener" href="https://fe32.top/wallpaper/">一些壁纸</a></li></ul></div></div></div><div class="ft-item-2"><p class="ft-t">推荐友链</p><div class="ft-img-group"><div class="img-group-item"><a target="_blank" rel="noopener" href="https://fe32.top/"><img src="https://bu.dusays.com/2022/05/02/626f92e193879.jpg" alt=""/></a></div><div class="img-group-item"><a target="_blank" rel="noopener" href="https://fe32.top/"><img src="https://bu.dusays.com/2022/05/02/626f92e193879.jpg" alt=""/></a></div><div class="img-group-item"><a target="_blank" rel="noopener" href="https://fe32.top/"><img src="https://bu.dusays.com/2022/05/02/626f92e193879.jpg" alt=""/></a></div><div class="img-group-item"><a target="_blank" rel="noopener" href="https://fe32.top/"><img src="https://bu.dusays.com/2022/05/02/626f92e193879.jpg" alt=""/></a></div></div></div></div><div class="copyright">&copy;2023  <i id="heartbeat" class="fa fas fa-heartbeat"></i> Mochicar</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="fa-solid fa-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="fa-solid fa-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="fa-solid fa-arrow-rotate-right"></i></div><div class="rightMenu-item" id="menu-home"><i class="fa-solid fa-house"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" href="/archives/"><i class="fa-solid fa-archive"></i><span>文章归档</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="fa-solid fa-folder-open"></i><span>文章分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="fa-solid fa-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuNormal"><a class="rightMenu-item menu-link" id="menu-radompage" href="/random/index.html"><i class="fa-solid fa-shoe-prints"></i><span>随便逛逛</span></a><div class="rightMenu-item" id="menu-translate"><i class="fa-solid fa-earth-asia"></i><span>繁简切换</span></div><div class="rightMenu-item" id="menu-darkmode"><i class="fa-solid fa-moon"></i><span>切换模式</span></div></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.19/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: '',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: '',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.textContent = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdnjs.cloudflare.com/ajax/libs/twikoo/1.6.16/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="/js/rightMenu.js"></script><script defer data-pjax src="/js/cat.js"></script><script src="//code.tidio.co/dlr51oobzk0ix1b3ckkmfy1jw3mmhgkt.js" async="async"></script><script>(() => {
+  const isChatBtn = true
+  const isChatHideShow = true
+
+  if (isChatBtn) {
+    let isShow = false
+    const close = () => {
+      window.tidioChatApi.hide()
+      isShow = false
+    }
+    
+    const open = () => {
+      window.tidioChatApi.open()
+      window.tidioChatApi.show()
+      isShow = true
+    }
+
+    const onTidioChatApiReady = () => {
+      window.tidioChatApi.hide()
+      window.tidioChatApi.on("close", close)
+    }
+    if (window.tidioChatApi) {
+      window.tidioChatApi.on("ready", onTidioChatApiReady)
+    } else {
+      document.addEventListener("tidioChat-ready", onTidioChatApiReady)
+    }
+
+    window.chatBtnFn = () => {
+      if (!window.tidioChatApi) return
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        window.tidioChatApi && window.tidioChatApi.hide()
+      },
+      show: () => {
+        window.tidioChatApi && window.tidioChatApi.show()
+      }
+    }
+  }
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":40,"vOffset":-20},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>

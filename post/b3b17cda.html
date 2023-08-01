@@ -697,7 +697,7 @@
 <h2 id="选型的个人看法"><a href="#选型的个人看法" class="headerlink" title="选型的个人看法"></a>选型的个人看法</h2><p>先说结论：选择 mpvue。</p>
 <p>wepy vs mpvue。</p>
 <p>理由：</p>
-<p><strong>工程化</strong> 原生开发因为不带工程化，诸如NPM包（未来会引入）、ES7、图片压缩、PostCss、pug、ESLint等等不能用。如果自己要搭工程化，不如直接使用wepy或mpvue。mpvue和wepy都可以和小程序原生开发混写。<a href="#https://github.com/mpvue/examples/tree/master/echarts">参考mpvue-echart</a>，<a href="https://link.juejin.cn/?target=https://github.com/Tencent/wepy/issues/1560">参考wepy</a>。 而问题在于wepy没有引入webpack(<a href="mailto:&#x77;&#101;&#x70;&#121;&#x40;&#50;&#46;&#x30;&#46;&#x78;">&#x77;&#101;&#x70;&#121;&#x40;&#50;&#46;&#x30;&#46;&#x78;</a>依然没有引入)，以上说的这些东西都要造轮子（作者造或自己造）。没有引入 Webpack 是一个重大的硬伤。社区维护的成熟 Webpack 显然更稳定，轮子更多。</p>
+<p><strong>工程化</strong> 原生开发因为不带工程化，诸如NPM包（未来会引入）、ES7、图片压缩、PostCss、pug、ESLint等等不能用。如果自己要搭工程化，不如直接使用wepy或mpvue。mpvue和wepy都可以和小程序原生开发混写。<a href="#https://github.com/mpvue/examples/tree/master/echarts">参考mpvue-echart</a>，<a href="https://link.juejin.cn/?target=https://github.com/Tencent/wepy/issues/1560">参考wepy</a>。 而问题在于wepy没有引入webpack(<a href="mailto:&#119;&#x65;&#112;&#121;&#64;&#50;&#x2e;&#48;&#x2e;&#x78;">&#119;&#x65;&#112;&#121;&#64;&#50;&#x2e;&#48;&#x2e;&#x78;</a>依然没有引入)，以上说的这些东西都要造轮子（作者造或自己造）。没有引入 Webpack 是一个重大的硬伤。社区维护的成熟 Webpack 显然更稳定，轮子更多。</p>
 <p><strong>维护</strong> wepy 也是社区维护的，是官方的？其实 wepy 的主要开发者只有作者一人，附上一个<a href="https://link.juejin.cn/?target=https://github.com/Tencent/wepy/graphs/contributors">contrubutors</a>链接。另外被官方招安了也是后来的事，再说腾讯要有精力帮着一起维护好 wepy，为什么不花精力在小程序原生开发上呢？再来看看 mpvue，是美团一个前端小组维护的。</p>
 <p><strong>学习成本</strong> Vue 的学习曲线比较平缓。mpvue 是 Vue的子集。所以 mpvue 的学习成本会低于 wepy。尤其是之前技术栈有学过用过 Vue 的。</p>
 <p><strong>未来规划</strong> mpvue 已经支持 web 和小程序。因为 mpvue 基于AST，所以未来可以支持支付宝小程序和快应用。他们也是有这样的规划。</p>
@@ -705,7 +705,7 @@
 <p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2018/9/5/165a9cd96a15f056~tplv-t2oaga2asx-zoom-in-crop-mark:3024:0:0:0.awebp" alt="mpvue-feature"></p>
 <p><strong>坑</strong> 两者都有各自的坑。但是我觉得有一些wepy的坑是没法容忍的。比如<a href="https://link.juejin.cn/?target=https://github.com/Tencent/wepy/issues/1231">repeat组建里面用computed得到的列表全是同一套数据</a>而且1.x是没法解决的。 wepy和mpvue我都开发过完整小程序的体验下，我觉得wepy的坑更多，而且wepy有些坑碍于架构设计没办法解决。</p>
 <h1 id="mpvue"><a href="#mpvue" class="headerlink" title="mpvue"></a>mpvue</h1><blockquote>
-<p>Vue.js 小程序版, fork 自 vuejs&#x2F;<a href="mailto:&#118;&#x75;&#101;&#64;&#x32;&#x2e;&#x34;&#46;&#49;">&#118;&#x75;&#101;&#64;&#x32;&#x2e;&#x34;&#46;&#49;</a>，保留了 vue runtime 能力，添加了小程序平台的支持。 <code>mpvue</code> 是一个使用 <code>Vue.js</code> 开发小程序的前端框架。框架基于 <code>Vue.js</code> 核心，<code>mpvue</code> 修改了 <code>Vue.js</code> 的 runtime 和 compiler 实现，使其可以运行在小程序环境中，从而为小程序开发引入了整套 <code>Vue.js</code> 开发体验。</p>
+<p>Vue.js 小程序版, fork 自 vuejs&#x2F;<a href="mailto:&#118;&#117;&#x65;&#x40;&#x32;&#46;&#x34;&#46;&#x31;">&#118;&#117;&#x65;&#x40;&#x32;&#46;&#x34;&#46;&#x31;</a>，保留了 vue runtime 能力，添加了小程序平台的支持。 <code>mpvue</code> 是一个使用 <code>Vue.js</code> 开发小程序的前端框架。框架基于 <code>Vue.js</code> 核心，<code>mpvue</code> 修改了 <code>Vue.js</code> 的 runtime 和 compiler 实现，使其可以运行在小程序环境中，从而为小程序开发引入了整套 <code>Vue.js</code> 开发体验。</p>
 </blockquote>
 <h2 id="框架原理"><a href="#框架原理" class="headerlink" title="框架原理"></a>框架原理</h2><p><strong>两个大方向</strong></p>
 <ul>
@@ -893,7 +893,7 @@
 <p><strong>webpack 配置配合升级指南</strong></p>
 <ul>
 <li>本次升级意在调整生成文件目录结构，对依赖的文件由原来的写死绝对路径该改为相对路径</li>
-<li><a href="mailto:&#x6d;&#112;&#118;&#117;&#101;&#x2d;&#108;&#111;&#x61;&#x64;&#x65;&#114;&#x40;&#49;&#x2e;&#49;&#x2e;&#50;&#x2d;&#114;&#x63;&#46;&#x34;">&#x6d;&#112;&#118;&#117;&#101;&#x2d;&#108;&#111;&#x61;&#x64;&#x65;&#114;&#x40;&#49;&#x2e;&#49;&#x2e;&#50;&#x2d;&#114;&#x63;&#46;&#x34;</a> 依赖 <a href="mailto:&#x77;&#101;&#98;&#112;&#97;&#99;&#107;&#x2d;&#x6d;&#x70;&#118;&#x75;&#101;&#45;&#97;&#115;&#115;&#x65;&#x74;&#45;&#x70;&#108;&#117;&#103;&#x69;&#110;&#x40;&#48;&#46;&#49;&#46;&#48;">&#x77;&#101;&#98;&#112;&#97;&#99;&#107;&#x2d;&#x6d;&#x70;&#118;&#x75;&#101;&#45;&#97;&#115;&#115;&#x65;&#x74;&#45;&#x70;&#108;&#117;&#103;&#x69;&#110;&#x40;&#48;&#46;&#49;&#46;&#48;</a> 做依赖资源引用</li>
+<li><a href="mailto:&#x6d;&#x70;&#x76;&#x75;&#x65;&#45;&#x6c;&#111;&#x61;&#100;&#101;&#x72;&#x40;&#49;&#x2e;&#49;&#x2e;&#50;&#45;&#114;&#99;&#46;&#52;">&#x6d;&#x70;&#x76;&#x75;&#x65;&#45;&#x6c;&#111;&#x61;&#100;&#101;&#x72;&#x40;&#49;&#x2e;&#49;&#x2e;&#50;&#45;&#114;&#99;&#46;&#52;</a> 依赖 <a href="mailto:&#119;&#x65;&#98;&#x70;&#97;&#99;&#x6b;&#45;&#109;&#112;&#118;&#117;&#101;&#x2d;&#x61;&#x73;&#x73;&#101;&#x74;&#45;&#112;&#108;&#117;&#103;&#105;&#110;&#64;&#x30;&#x2e;&#x31;&#46;&#x30;">&#119;&#x65;&#98;&#x70;&#97;&#99;&#x6b;&#45;&#109;&#112;&#118;&#117;&#101;&#x2d;&#x61;&#x73;&#x73;&#101;&#x74;&#45;&#112;&#108;&#117;&#103;&#105;&#110;&#64;&#x30;&#x2e;&#x31;&#46;&#x30;</a> 做依赖资源引用</li>
 <li>之前写在 main.js 中的 config 信息，需要在 main.js 同级目录下新建 main.json 文件，使用 webapck-copy-plugin copy 到 build 目录下</li>
 <li>app.json 中引用的图片不会自动 copy 到 dist 目录下 json 配置文件是由 webapck-copy-plugin copy 过去的，不会处理依赖，可以将图片放到根目录下 static 目录下，使用 webapck-copy-plugin copy 过去</li>
 </ul>
